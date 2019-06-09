@@ -1,0 +1,47 @@
+---
+title: "Standard Charges Data"
+author: "OHANA Project"
+date: "5/10/2019"
+output: html_document
+---
+
+## Libraries
+
+```{r}
+#install.packages("RCurl")
+library(RCurl)
+library(DataExplorer)
+```
+
+## File Download
+
+```{r}
+URL <- "https://raw.githubusercontent.com/ohana-project/StandardChargesData/master/chargelevel.csv"
+Files <- getURL(URL)
+Data <- read.csv(textConnection(Files))
+```
+
+## Download Data for Specified State (To Do)
+
+### Append Hospital Information to Data (To Do)
+
+
+## View Data
+
+```{r}
+head(Data[1:2])
+```
+
+```{r}
+Meds <- Data[grepl("ACETAMINOPHEN",Data$Charge),]
+print(Meds)
+```
+
+```{r}
+Card <- Data[grepl("NASAL.*CAN.*[0O]2 ",Data$Charge),]
+print(Card)
+```
+
+```{r}
+summary(Data)
+```
